@@ -1,65 +1,99 @@
 # vehicle-capture-training
 
-A simple tool for capturing images from a network-connected camera (RTSP) and preparing a dataset for training.
+A simple tool for capturing images from a network-connected camera (e.g. RTSP) and building a dataset for training.
 
-## ✅ What is this project
+## ✅ What is this project?
 
-This repository provides scripts to capture frames/images from a camera over RTSP (or local network), manage datasets, and assist in training models.  
-It’s useful for scenarios where you need to build a custom dataset from a CCTV / IP-camera or network camera stream (e.g. for vehicle detection or other computer-vision tasks).
+This repository provides scripts to capture frames/images from a camera stream (RTSP or local network), manage datasets, and help train models.  
+It is useful when building custom datasets from CCTV/IP cameras (e.g. for vehicle detection or other computer-vision tasks).
 
 ## 📦 Contents / Key Files
 
-- `getimg.py` — Capture images from the camera stream to build a dataset.  
-- `tapo_capture_dataset.py` — Another script variant to capture images from a (TP-Link Tapo or similar) camera.  
-- `train.py` — Script to train a model on the captured dataset.  
-- `test.py`, `aws_test.py`, `aws_send.py` — Example/testing scripts (e.g. sending data to AWS or testing capture).  
-- `dataset.yaml` — Configuration / metadata for dataset usage.  
-- `*.pt` (e.g. `yolo11n.pt`, `yolov8n.pt`) — Pre-trained model weights (or model checkpoints).  
-- `.gitignore` — Ignore file for sensitive or large files.  
+- `getimg.py` — capture images from a camera stream  
+- `tapo_capture_dataset.py` — capture images from a Tapo or similar camera  
+- `train.py` — train a model using the captured dataset  
+- `test.py`, `aws_test.py`, `aws_send.py` — testing and AWS communication scripts  
+- `dataset.yaml` — dataset configuration  
+- `*.pt` — model weights (e.g. `yolo11n.pt`, `yolov8n.pt`)  
+- `.gitignore` — ignore rules for sensitive or large files  
 
-## 🛠️ Getting Started / Usage
+## 🛠️ Getting Started
 
-1. **Clone the repository**  
-   ```bash
-   git clone https://github.com/<your-username>/vehicle-capture-training.git
-   cd vehicle-capture-training
-2. Install dependencies
-The project is currently Python-based. Ensure you have Python installed (e.g. 3.x).
-You may create a virtual environment:
+### 1. Clone the repository
 
+```bash
+git clone https://github.com/YourUsername/vehicle-capture-training.git
+cd vehicle-capture-training
+```
+
+### 2. Install dependencies
+
+Create a virtual environment (optional but recommended):
+
+```bash
 python -m venv venv
-source venv/bin/activate    # (on Windows use `venv\Scripts\activate`)
-pip install -r requirements.txt  # if you have a requirements file
+```
 
+Windows:
 
-(If you don’t yet have a requirements.txt, you may add one with the needed libraries.)
+```bash
+.
+env\Scripts ctivate
+```
 
-3. Configure dataset & camera stream
+Mac/Linux:
 
-Set up your RTSP or network camera URL in the capture script (getimg.py or tapo_capture_dataset.py).
+```bash
+source venv/bin/activate
+```
 
-Optionally, edit settings in dataset.yaml if required (e.g. capture frequency, image format, dataset structure).
+Install dependencies (if you add a requirements file):
 
-4. Capture images
-Run the capture script to start pulling frames from the camera and store them as images.
+```bash
+pip install -r requirements.txt
+```
 
+### 3. Configure your camera and dataset
+
+Edit your camera URL inside the capture script:
+
+```python
+# Inside getimg.py or tapo_capture_dataset.py
+camera_url = "rtsp://YOUR_CAMERA_URL"
+```
+
+Modify `dataset.yaml` if needed.
+
+### 4. Capture images
+
+```bash
 python getimg.py
+```
 
+(or use `tapo_capture_dataset.py` depending on your device)
 
-5. Train the model
-Once you have a sufficient dataset, run:
+### 5. Train the model
 
+```bash
 python train.py
+```
 
-This will (depending on your code) train a model using the captured images.
+### 6. Test the model
 
-6. Test / Use model
-Use test.py or other scripts to test inference, or integrate with AWS using aws_test.py / aws_send.py (if configured).
+```bash
+python test.py
+```
 
-🎯 Intended Use Cases
+If using AWS-related features:
 
-Building a custom dataset from CCTV / IP cameras for vehicle detection.
+```bash
+python aws_test.py
+python aws_send.py
+```
 
-Rapid prototyping of computer-vision models requiring custom data.
+## 🎯 Intended Use Cases
 
-Automated capture and training pipelines for surveillance or object detection projects.
+- Building custom datasets from IP cameras  
+- Training vehicle-detection or object-detection models  
+- Rapid machine-learning prototyping with custom captured data  
+- Automated data-capture → train → test pipelines  
