@@ -1,0 +1,7 @@
+train: C:\Users\zaro\Documents\_Dev\aws\school_proj\dataset\images\train
+val: C:\Users\zaro\Documents\_Dev\aws\school_proj\dataset\images\val
+
+nc: 9
+names: ['sedan', 'SUV', 'truck', 'van', 'bus', 'motorcycle', 'firetruck','police','ambulance']
+# You need to ensure that the dataset names here and NC match the model you trained on. If you for instance added another vehicle and trained on it, you need to ensure that 
+# its here and that its name matches the one from your model

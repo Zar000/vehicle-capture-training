@@ -1,0 +1,17 @@
+# Sensitive
+testimages/
+runs/
+dataset/
+certs_rpi4/
+*.csv
+*.xlsx
+*.jpg
+*.env
+*.key
+*.pem
+*.txt
+
+# System / editor files
+.DS_Store
+Thumbs.db
+*.log
